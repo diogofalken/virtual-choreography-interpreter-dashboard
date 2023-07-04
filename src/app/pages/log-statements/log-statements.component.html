@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Log Statements</mat-card-title>
+    <mat-card-subtitle>
+      This statements were generated from the uploaded logs.
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actor">
+        <th mat-header-cell *matHeaderCellDef>Actor</th>
+        <td mat-cell *matCellDef="let element">{{ element.actor }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="verb">
+        <th mat-header-cell *matHeaderCellDef>Verb</th>
+        <td mat-cell *matCellDef="let element">{{ element.verb }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="object">
+        <th mat-header-cell *matHeaderCellDef>Object</th>
+        <td mat-cell *matCellDef="let element">{{ element.object }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="place">
+        <th mat-header-cell *matHeaderCellDef>Place</th>
+        <td mat-cell *matCellDef="let element">{{ element.place }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of log statements"
+    >
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>
