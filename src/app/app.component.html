@@ -1,5 +1,8 @@
 <mat-toolbar>
-  <span>Virtual Choreography Interpreter Dashboard</span>
+  <span class="mr-1">Virtual Choreography Interpreter</span>
+
+  <button mat-button routerLink="recipe">Receita</button>
+
   <span class="example-spacer"></span>
   <button mat-icon-button aria-label="Upload a source file">
     <mat-icon>upload</mat-icon>
@@ -7,51 +10,5 @@
 </mat-toolbar>
 
 <div class="container">
-  <ng-container *ngIf="this.source">
-    <h2>Source</h2>
-
-    <p>ID: {{ this.source.id }}</p>
-    <p>Name: {{ this.source.name }}</p>
-    <p>Type: {{ this.source.type }}</p>
-  </ng-container>
-
-  <ng-container *ngIf="this.recipe">
-    <h2>Recipe</h2>
-
-    <div class="recipe-info">
-      <h3>Actors</h3>
-      <mat-chip-listbox aria-label="Actors List">
-        <mat-chip *ngFor="let actor of this.recipe.actors">
-          {{ actor.name }}
-        </mat-chip>
-      </mat-chip-listbox>
-    </div>
-
-    <div class="recipe-info">
-      <h3>Verbs</h3>
-      <mat-chip-listbox aria-label="Actors List">
-        <mat-chip *ngFor="let verb of this.recipe.verbs">
-          {{ verb.display }}
-        </mat-chip>
-      </mat-chip-listbox>
-    </div>
-
-    <div class="recipe-info">
-      <h3>Objects</h3>
-      <mat-chip-listbox aria-label="Actors List">
-        <mat-chip *ngFor="let object of this.recipe.objects">
-          {{ object.definition.name }}
-        </mat-chip>
-      </mat-chip-listbox>
-    </div>
-
-    <div class="recipe-info">
-      <h3>Places</h3>
-      <mat-chip-listbox aria-label="Actors List">
-        <mat-chip *ngFor="let place of this.recipe.places">
-          {{ place.name | slice : 0 : 20 }}
-        </mat-chip>
-      </mat-chip-listbox>
-    </div>
-  </ng-container>
+  <router-outlet></router-outlet>
 </div>

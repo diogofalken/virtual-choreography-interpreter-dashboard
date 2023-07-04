@@ -7,16 +7,20 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { SourcesService } from './services/sources.service';
 
 import { NgChartsModule } from 'ng2-charts';
+import { RecipeComponent } from './pages/recipe/recipe.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, RecipeComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -29,6 +33,9 @@ import { NgChartsModule } from 'ng2-charts';
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
+    MatCardModule,
+    MatListModule,
+    MatDividerModule,
   ],
   providers: [SourcesService, HttpClientModule],
   bootstrap: [AppComponent],

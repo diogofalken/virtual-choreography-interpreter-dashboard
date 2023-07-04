@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, take } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 type ActorType = { id: string; name: string };
 
 type VerbType = {
@@ -62,7 +64,7 @@ export type GetSourceDto = {
   providedIn: 'root',
 })
 export class SourcesService {
-  API_URL = 'http://localhost:5001/sources';
+  API_URL = `${environment.PLATAFORM_DATA_EXTRACTOR_API_URL}/sources`;
   constructor(private readonly http: HttpClient) {}
 
   getSource(

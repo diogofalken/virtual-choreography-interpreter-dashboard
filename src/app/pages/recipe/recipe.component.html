@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="card-container" *ngIf="this.recipe; else noRecipeAlert">
+    <mat-card
+      (click)="this.selectCard('actors')"
+      [ngClass]="{ 'mat-card-active': this.selectedCard.label === 'actors' }"
+    >
+      <mat-card-header>
+        <mat-card-title>
+          <span class="card-title-primary">{{
+            this.recipe.actors.length
+          }}</span>
+          actors
+        </mat-card-title>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card
+      (click)="this.selectCard('verbs')"
+      [ngClass]="{ 'mat-card-active': this.selectedCard.label === 'verbs' }"
+    >
+      <mat-card-header>
+        <mat-card-title>
+          <span class="card-title-primary">{{ this.recipe.verbs.length }}</span>
+          verbs
+        </mat-card-title>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card
+      (click)="this.selectCard('objects')"
+      [ngClass]="{ 'mat-card-active': this.selectedCard.label === 'objects' }"
+    >
+      <mat-card-header>
+        <mat-card-title>
+          <span class="card-title-primary">{{
+            this.recipe.objects.length
+          }}</span>
+          objects
+        </mat-card-title>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card
+      (click)="this.selectCard('places')"
+      [ngClass]="{ 'mat-card-active': this.selectedCard.label === 'places' }"
+    >
+      <mat-card-header>
+        <mat-card-title>
+          <span class="card-title-primary">{{
+            this.recipe.places.length
+          }}</span>
+          places
+        </mat-card-title>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="list-title">{{
+        this.selectedCard.label | titlecase
+      }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="main-card-container">
+      <mat-list role="list" *ngFor="let item of this.selectedCard.items">
+        <mat-list-item role="listitem">{{ item }}</mat-list-item>
+      </mat-list>
+
+      <div *ngIf="this.selectedCard.items.length === 0">Não existem dados.</div>
+    </mat-card-content>
+  </mat-card>
+
+  <ng-template #noRecipeAlert>
+    <div>Verifica que foi feito o upload de uma Source válida.</div>
+  </ng-template>
+</div>
