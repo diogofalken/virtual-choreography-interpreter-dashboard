@@ -1,0 +1,17 @@
+<mat-tab-group>
+  <mat-tab [label]="tab" *ngFor="let tab of this.tabs">
+    <mat-list>
+      <ng-container *ngFor="let choreography of this.choreographies.get(tab)">
+        <mat-list-item *ngFor="let statement of choreography">
+          <div matListItemTitle>{{ statement.naturalLanguage }}</div>
+          <div matListItemLine>
+            {{ statement.statement.id }} |
+            {{
+              statement.statement.context.extensions.timestamp | date : "medium"
+            }}
+          </div>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-tab>
+</mat-tab-group>

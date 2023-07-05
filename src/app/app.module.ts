@@ -14,16 +14,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { SourcesService } from './services/sources.service';
 
 import { NgChartsModule } from 'ng2-charts';
+import { ChoreographiesComponent } from './pages/choreographies/choreographies.component';
 import { LogStatementsComponent } from './pages/log-statements/log-statements.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
+import { ChoreographiesService } from './services/choreographies.service';
 
 @NgModule({
-  declarations: [AppComponent, RecipeComponent, LogStatementsComponent],
+  declarations: [
+    AppComponent,
+    RecipeComponent,
+    LogStatementsComponent,
+    ChoreographiesComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -41,8 +49,9 @@ import { RecipeComponent } from './pages/recipe/recipe.component';
     MatDividerModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTabsModule,
   ],
-  providers: [SourcesService, HttpClientModule],
+  providers: [SourcesService, HttpClientModule, ChoreographiesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

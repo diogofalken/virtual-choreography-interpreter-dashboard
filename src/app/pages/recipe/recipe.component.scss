@@ -31,17 +31,38 @@
     cursor: pointer;
 
     &:hover {
-      box-shadow: -1px 10px 15px 0px rgba(0, 0, 0, 0.4);
+      box-shadow:
+        0 1px 1px hsl(0deg 0% 0% / 0.075),
+        0 2px 2px hsl(0deg 0% 0% / 0.075),
+        0 4px 4px hsl(0deg 0% 0% / 0.075),
+        0 8px 8px hsl(0deg 0% 0% / 0.075),
+        0 16px 16px hsl(0deg 0% 0% / 0.075);
       transition: all 0.5s;
     }
   }
 }
 
-.main-card-container {
-  height: 60vh;
-  overflow: auto;
+#main-container {
+  box-shadow:
+    0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075),
+    0 16px 16px hsl(0deg 0% 0% / 0.075);
 
-  .list-title {
-    font-weight: bold;
+
+  mat-card-header {
+    border-bottom: 1px solid #e6e6e6;
+    padding: 1rem;
+  }
+
+  mat-card-content {
+    height: 60vh;
+    overflow: auto;
+
+
+    .list-title {
+      font-weight: bold;
+    }
   }
 }

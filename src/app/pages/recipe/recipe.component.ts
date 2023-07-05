@@ -24,7 +24,7 @@ export class RecipeComponent implements OnInit {
 
   ngOnInit(): void {
     this.sourcesService
-      .getSource('1647e8c9-b780-4c6a-97ab-97da95e3819c', { recipe: true })
+      .getSource('0965c2fe-ca3a-4d57-8c4a-9c8b8ad7ac91', { recipe: true })
       .subscribe({
         next: (response) => {
           this.source = response.source;
