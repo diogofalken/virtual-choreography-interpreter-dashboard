@@ -23,9 +23,8 @@ export class RecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sourcesService
-      .getSource('0965c2fe-ca3a-4d57-8c4a-9c8b8ad7ac91', { recipe: true })
-      .subscribe({
+    this.sourcesService.sourceId$.subscribe((sourceId) => {
+      this.sourcesService.getSource(sourceId, { recipe: true }).subscribe({
         next: (response) => {
           this.source = response.source;
           this.recipe = response.recipe;
@@ -37,6 +36,7 @@ export class RecipeComponent implements OnInit {
           console.log(error);
         },
       });
+    });
   }
 
   selectCard(label: 'actors' | 'verbs' | 'objects' | 'places'): void {

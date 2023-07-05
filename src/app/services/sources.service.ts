@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, take } from 'rxjs/operators';
 
+import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Recipe, Source, Statement } from '../types/core.types';
 
@@ -15,7 +16,34 @@ export type GetSourceDto = {
 })
 export class SourcesService {
   readonly #API_URL = `${environment.PLATAFORM_DATA_EXTRACTOR_API_URL}/sources`;
+
+  #sourceId: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  get sourceId$() {
+    if (this.#sourceId.getValue() === '') {
+      const sourceId = localStorage.getItem('sourceId');
+      if (sourceId) {
+        this.#sourceId.next(sourceId);
+      }
+    }
+    return this.#sourceId.asObservable();
+  }
+
   constructor(private readonly http: HttpClient) {}
+
+  createSource(file: File) {
+    const formData = new FormData();
+    formData.append('source', file);
+
+    return this.http.post<{ id: string }>(this.#API_URL, formData).pipe(
+      take(1),
+      map((response) => {
+        this.#sourceId.next(response.id);
+        localStorage.setItem('sourceId', response.id);
+        return response;
+      })
+    );
+  }
 
   getSource(
     sourceId: string,

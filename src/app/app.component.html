@@ -6,11 +6,20 @@
   <button mat-button routerLink="choreographies">Choreographies</button>
 
   <span class="example-spacer"></span>
-  <button mat-icon-button aria-label="Upload a source file">
+  <button
+    (click)="uploadFile()"
+    mat-icon-button
+    aria-label="Upload a source file"
+  >
     <mat-icon>upload</mat-icon>
   </button>
+  <input id="file-upload" type="file" (change)="onFileUpload($event)" />
 </mat-toolbar>
 
 <div class="container">
-  <router-outlet></router-outlet>
+  <mat-spinner *ngIf="isLoading; else routerOutlet"></mat-spinner>
+
+  <ng-template #routerOutlet>
+    <router-outlet></router-outlet>
+  </ng-template>
 </div>

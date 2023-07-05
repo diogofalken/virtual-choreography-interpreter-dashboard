@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { StatementsHelper } from '../../helpers/statements.helper';
 import { ChoreographiesService } from '../../services/choreographies.service';
+import { SourcesService } from '../../services/sources.service';
 import { Statement } from '../../types/core.types';
 
 @Component({
@@ -18,23 +19,28 @@ export class ChoreographiesComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private readonly choreographiesService: ChoreographiesService) {}
+  constructor(
+    private readonly choreographiesService: ChoreographiesService,
+    private readonly sourcesService: SourcesService
+  ) {}
 
   ngOnInit(): void {
-    this.choreographiesService
-      .getChoreographies('0965c2fe-ca3a-4d57-8c4a-9c8b8ad7ac91')
-      .subscribe({
-        next: (response) => {
-          for (const choreography of response) {
-            this.addToChoreographiesMap(choreography);
-          }
+    this.sourcesService.sourceId$.subscribe((sourceId) => {
+      this.choreographiesService
+        .getChoreographies('0965c2fe-ca3a-4d57-8c4a-9c8b8ad7ac91')
+        .subscribe({
+          next: (response) => {
+            for (const choreography of response) {
+              this.addToChoreographiesMap(choreography);
+            }
 
-          this.tabs = Array.from(this.choreographies.keys());
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+            this.tabs = Array.from(this.choreographies.keys());
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+    });
   }
 
   private addToChoreographiesMap(choreography: {

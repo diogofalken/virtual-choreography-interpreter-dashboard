@@ -24,9 +24,8 @@ export class LogStatementsComponent implements OnInit, AfterViewInit {
   constructor(private readonly sourcesService: SourcesService) {}
 
   ngOnInit(): void {
-    this.sourcesService
-      .getSource('0965c2fe-ca3a-4d57-8c4a-9c8b8ad7ac91', { statements: true })
-      .subscribe({
+    this.sourcesService.sourceId$.subscribe((sourceId) => {
+      this.sourcesService.getSource(sourceId, { statements: true }).subscribe({
         next: (response) => {
           this.dataSource.data = response.statements.map((s) => ({
             id: s.id,
@@ -40,6 +39,7 @@ export class LogStatementsComponent implements OnInit, AfterViewInit {
           console.log(error);
         },
       });
+    });
   }
 
   ngAfterViewInit(): void {
