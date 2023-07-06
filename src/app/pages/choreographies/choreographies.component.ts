@@ -26,20 +26,18 @@ export class ChoreographiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.sourcesService.sourceId$.subscribe((sourceId) => {
-      this.choreographiesService
-        .getChoreographies('0965c2fe-ca3a-4d57-8c4a-9c8b8ad7ac91')
-        .subscribe({
-          next: (response) => {
-            for (const choreography of response) {
-              this.addToChoreographiesMap(choreography);
-            }
+      this.choreographiesService.getChoreographies(sourceId).subscribe({
+        next: (response) => {
+          for (const choreography of response) {
+            this.addToChoreographiesMap(choreography);
+          }
 
-            this.tabs = Array.from(this.choreographies.keys());
-          },
-          error: (error) => {
-            console.log(error);
-          },
-        });
+          this.tabs = Array.from(this.choreographies.keys());
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
     });
   }
 
