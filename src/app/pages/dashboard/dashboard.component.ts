@@ -10,11 +10,11 @@ import { Recipe, Statement } from '../../types/core.types';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  recipeStatisticsOptions!: EChartsOption;
-  recipeGraphOptions!: EChartsOption;
-  choreographiesStatisticsOptions!: EChartsOption;
+  recipeStatisticsOptions?: EChartsOption;
+  recipeGraphOptions?: EChartsOption;
+  choreographiesStatisticsOptions?: EChartsOption;
 
-  choreographiesDistributionInTimeOptions!: EChartsOption;
+  choreographiesDistributionInTimeOptions?: EChartsOption;
 
   constructor(
     private readonly sourcesService: SourcesService,
@@ -283,7 +283,6 @@ export class DashboardComponent implements OnInit {
         label: { show: true },
       },
     ];
-    let i = nodes.length;
     const links = [
       {
         source: '0',
