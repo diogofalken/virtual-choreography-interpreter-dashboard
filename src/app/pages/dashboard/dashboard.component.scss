@@ -4,6 +4,9 @@
 
   gap: 2rem;
 
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
   mat-card-content {
     padding: 1rem;
   }
@@ -12,4 +15,8 @@
 .side-by-side-row {
   display: flex;
   justify-content: space-between;
+}
+
+.chart-xl {
+  height: 600px;
 }
