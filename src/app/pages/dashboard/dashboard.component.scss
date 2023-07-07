@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+
+  mat-card-content {
+    padding: 1rem;
+  }
+}
+
+.side-by-side-row {
+  display: flex;
+  justify-content: space-between;
+}

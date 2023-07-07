@@ -21,10 +21,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SourcesService } from './services/sources.service';
 
 import { NgChartsModule } from 'ng2-charts';
+import { NgxEchartsModule } from 'ngx-echarts';
 import { ChoreographiesComponent } from './pages/choreographies/choreographies.component';
 import { LogStatementsComponent } from './pages/log-statements/log-statements.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { ChoreographiesService } from './services/choreographies.service';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { ChoreographiesService } from './services/choreographies.service';
     RecipeComponent,
     LogStatementsComponent,
     ChoreographiesComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,10 @@ import { ChoreographiesService } from './services/choreographies.service';
     MatPaginatorModule,
     MatTabsModule,
     MatProgressSpinnerModule,
+
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [SourcesService, HttpClientModule, ChoreographiesService],
   bootstrap: [AppComponent],

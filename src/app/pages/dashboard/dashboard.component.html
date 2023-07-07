@@ -1,0 +1,43 @@
+<h1>Dashboard</h1>
+
+<div class="container">
+  <div class="side-by-side-row">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Recipe statistics</mat-card-title>
+        <mat-card-subtitle>
+          This bar chart compares the numbers of actors, verbs, objects, and
+          places of the xAPI recipe context.
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div echarts [options]="responseStatisticsOptions"></div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>EaD Choreographies Type</mat-card-title>
+        <mat-card-subtitle>
+          This chart represent the choreographies distribution, from the source
+          provided.
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div echarts [options]="choreographiesStatisticsOptions"></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Choreographies Distribution in Time</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div echarts [options]="choreographiesDistributionInTimeOptions"></div>
+    </mat-card-content>
+  </mat-card>
+</div>
