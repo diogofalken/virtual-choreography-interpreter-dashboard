@@ -27,6 +27,7 @@ import { LogStatementsComponent } from './pages/log-statements/log-statements.co
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { ChoreographiesService } from './services/choreographies.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SourceNotFoundComponent } from './pages/source-not-found/source-not-found.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     LogStatementsComponent,
     ChoreographiesComponent,
     DashboardComponent,
+    SourceNotFoundComponent,
   ],
   imports: [
     BrowserModule,

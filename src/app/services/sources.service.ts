@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, take } from 'rxjs/operators';
+import { catchError, map, take } from 'rxjs/operators';
 
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -63,7 +63,11 @@ export class SourcesService {
       .get<GetSourceDto>(`${this.#API_URL}/${sourceId}`, { params })
       .pipe(
         take(1),
-        map((response) => response)
+        map((response) => response),
+        catchError((error) => {
+          localStorage.removeItem('sourceId');
+          throw error;
+        })
       );
   }
 }
