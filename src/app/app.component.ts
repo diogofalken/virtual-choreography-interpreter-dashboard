@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SourcesService } from './services/sources.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { SourcesService } from './services/sources.service';
 export class AppComponent {
   isLoading = false;
 
-  constructor(private readonly sourcesService: SourcesService) {}
+  constructor(
+    private readonly sourcesService: SourcesService,
+    private readonly snackBar: MatSnackBar
+  ) {}
 
   uploadFile() {
     const input = document.querySelector('#file-upload') as HTMLInputElement;
@@ -30,12 +34,12 @@ export class AppComponent {
         file.type !==
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
       ) {
-        alert('File is not a valid Excel file!');
+        this.snackBar.open('File is not a valid Excel file!');
         return;
       }
 
       if (file.size > 5000000) {
-        alert('File is too big!');
+        this.snackBar.open('File is too big!');
         return;
       }
 
@@ -43,11 +47,11 @@ export class AppComponent {
 
       this.sourcesService.createSource(file).subscribe({
         next: (source) => {
-          alert('File was uploaded with success!');
+          this.snackBar.open('File was uploaded with success!');
           this.isLoading = false;
         },
         error: () => {
-          alert('An error occurred while uploading the file!');
+          this.snackBar.open('An error occurred while uploading the file!');
         },
       });
     }
